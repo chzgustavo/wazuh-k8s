@@ -16,8 +16,8 @@ metadata:
 #provisioner: microk8s.io/hostpath
 
 # In case you're running Minikube you can comment the line above and use this one
-# provisioner: k8s.io/minikube-hostpath
-provisioner: rancher.io/local-path
+provisioner: k8s.io/minikube-hostpath
+#provisioner: rancher.io/local-path
 
 # If you're using a different provider you can list storage classes
 # with: "kubectl get sc" and look for the column "Provisioner"
