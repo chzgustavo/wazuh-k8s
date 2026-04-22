@@ -17,3 +17,5 @@ opensearch_security.session.ttl: 900000
 opensearch_security.session.keepalive: true
 opensearch_security.ui.basicauth.login.title: "Apple head"
 opensearch_security.ui.basicauth.login.subtitle: "Gustavo"
+opensearchDashboards.branding:
+  applicationTitle: "Invincible"
