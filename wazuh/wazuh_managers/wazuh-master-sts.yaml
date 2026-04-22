@@ -103,6 +103,15 @@ spec:
             - name: wazuh-manager-master
               mountPath: /var/lib/filebeat
               subPath: filebeat/var/lib/filebeat
+          livenessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - /var/ossec/bin/wazuh-control status | grep "wazuh-modulesd is running"
+            initialDelaySeconds: 120
+            periodSeconds: 30
+            failureThreshold: 2
           ports:
             - containerPort: 1515
               name: registration
