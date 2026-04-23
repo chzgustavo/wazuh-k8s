@@ -50,9 +50,12 @@ spec:
         - name: wazuh-manager
           image: 'wazuh/wazuh-manager:4.14.4'
           resources:
-            limits:
+            requests:
               cpu: 400m
               memory: 512Mi
+            limits:
+              cpu: 2000m
+              memory: 2500Mi
           securityContext:
             capabilities:
               add: ["SYS_CHROOT"]
@@ -106,6 +109,15 @@ spec:
             - name: wazuh-manager-worker
               mountPath: /var/lib/filebeat
               subPath: filebeat/var/lib/filebeat
+          livenessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - /var/ossec/bin/wazuh-control status | grep "wazuh-modulesd is running"
+            initialDelaySeconds: 120
+            periodSeconds: 30
+            failureThreshold: 2
           ports:
             - containerPort: 1514
               name: agents-events
